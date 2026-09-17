@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AutoMarket AI</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a
+            href="#home"
+            class="logo"
+        >
+            <span class="logo-mark">A</span>
+
+            <span class="logo-text">
+                <strong>AutoMarket</strong>
+                <small>AI Marketplace</small>
+            </span>
+        </a>
+
+        <nav class="nav-links">
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#browse">
+                Browse
+            </a>
+
+            <a href="#search">
+                Search
+            </a>
+
+            <a href="#my-listings">
+                My Listings
+            </a>
+
+            <a href="#ai">
+                AI Assistant
+            </a>
+
+            <a href="#features">
+                Features
+            </a>
+
+        </nav>
+
+        <div class="nav-actions">
+
+            <button
+                class="nav-sell-btn"
+                id="navSellBtn"
+                type="button"
+            >
+                Sell Your Car
+            </button>
+
+            <!-- PROFILE -->
+
+            <div class="profile-wrapper">
+
+                <button
+                    class="profile-btn"
+                    id="profileBtn"
+                    type="button"
+                >
+
+                    <span
+                        class="profile-avatar"
+                        id="profileAvatar"
+                    >
+                        G
+                    </span>
+
+                    <span
+                        class="profile-name"
+                        id="profileName"
+                    >
+                        Guest
+                    </span>
+
+                    <span class="profile-arrow">
+                        ▾
+                    </span>
+
+                </button>
+
+                <div
+                    class="profile-menu hidden"
+                    id="profileMenu"
+                >
+
+                    <div class="profile-menu-header">
+
+                        <div
+                            class="profile-avatar large"
+                            id="profileAvatarLarge"
+                        >
+                            G
+                        </div>
+
+                        <div>
+
+                            <strong id="profileMenuName">
+                                Guest
+                            </strong>
+
+                            <span id="profileMenuEmail">
+                                Not logged in
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="profile-menu-item"
+                        id="profileMyListings"
+                        type="button"
+                    >
+                        My Listings
+                    </button>
+
+                    <button
+                        class="profile-menu-item logout-item hidden"
+                        id="profileLogoutBtn"
+                        type="button"
+                    >
+                        Logout
+                    </button>
+
+                    <button
+                        class="profile-menu-item login-item"
+                        id="profileLoginBtn"
+                        type="button"
+                    >
+                        Login
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section
+    class="hero"
+    id="home"
+>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+
+            <span></span>
+
+            AI-powered car marketplace
+
+        </div>
+
+        <h1>
+            Find the car<br>
+            <span>that fits your life.</span>
+        </h1>
+
+        <p>
+            Discover, compare and find your next car
+            with a smarter marketplace powered by AI.
+        </p>
+
+        <div class="hero-actions">
+
+            <button
+                class="primary-btn"
+                onclick="scrollToSection('browse')"
+                type="button"
+            >
+                Browse Cars
+                <span>→</span>
+            </button>
+
+            <button
+                class="secondary-btn"
+                id="heroSellBtn"
+                type="button"
+            >
+                Sell Your Car
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="hero-bottom">
+
+        <div>
+            Smart Search
+        </div>
+
+        <div>
+            Verified Listings
+        </div>
+
+        <div>
+            AI Assistance
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BROWSE CARS
+===================================================== -->
+
+<section
+    class="section"
+    id="browse"
+>
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="eyebrow">
+                MARKETPLACE
+            </span>
+
+            <h2>
+                Browse Cars
+            </h2>
+
+            <p>
+                Explore vehicles currently available
+                on AutoMarket.
+            </p>
+
+        </div>
+
+        <button
+            class="outline-btn"
+            onclick="loadCars()"
+            type="button"
+        >
+            Refresh
+        </button>
+
+    </div>
+
+    <div
+        id="carsContainer"
+        class="cars-grid"
+    ></div>
+
+</section>
+
+
+<!-- =====================================================
+     SEARCH & FILTERS
+===================================================== -->
+
+<section
+    class="section search-section"
+    id="search"
+>
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="eyebrow">
+                DISCOVER
+            </span>
+
+            <h2>
+                Search & Filters
+            </h2>
+
+            <p>
+                Search by car, city, price, year,
+                mileage, fuel and transmission.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="search-panel">
+
+        <div class="search-main">
+
+            <div class="field search-field-main">
+
+                <label>
+                    Search
+                </label>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="e.g. Suzuki Alto"
+                >
+
+            </div>
+
+            <button
+                class="primary-btn search-submit-btn"
+                id="searchBtn"
+                type="button"
+            >
+                Search Cars
+            </button>
+
+        </div>
+
+
+        <div class="filter-grid">
+
+            <div class="field">
+
+                <label>
+                    City
+                </label>
+
+                <input
+                    type="text"
+                    id="cityFilter"
+                    placeholder="e.g. BWP"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Fuel Type
+                </label>
+
+                <select id="fuelFilter">
+
+                    <option value="">
+                        Any fuel
+                    </option>
+
+                    <option value="Petrol">
+                        Petrol
+                    </option>
+
+                    <option value="Diesel">
+                        Diesel
+                    </option>
+
+                    <option value="Hybrid">
+                        Hybrid
+                    </option>
+
+                    <option value="Electric">
+                        Electric
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Transmission
+                </label>
+
+                <select id="transmissionFilter">
+
+                    <option value="">
+                        Any transmission
+                    </option>
+
+                    <option value="Manual">
+                        Manual
+                    </option>
+
+                    <option value="Automatic">
+                        Automatic
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Minimum Price
+                </label>
+
+                <input
+                    type="number"
+                    id="minPrice"
+                    placeholder="0"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Maximum Price
+                </label>
+
+                <input
+                    type="number"
+                    id="maxPrice"
+                    placeholder="50000000"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Minimum Year
+                </label>
+
+                <input
+                    type="number"
+                    id="minYear"
+                    placeholder="2000"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Maximum Year
+                </label>
+
+                <input
+                    type="number"
+                    id="maxYear"
+                    placeholder="2026"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Minimum Mileage
+                </label>
+
+                <input
+                    type="number"
+                    id="minMileage"
+                    placeholder="0"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Maximum Mileage
+                </label>
+
+                <input
+                    type="number"
+                    id="maxMileage"
+                    placeholder="300000"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Sort By
+                </label>
+
+                <select id="sortBy">
+
+                    <option value="id">
+                        Latest
+                    </option>
+
+                    <option value="price">
+                        Price
+                    </option>
+
+                    <option value="year">
+                        Year
+                    </option>
+
+                    <option value="mileage">
+                        Mileage
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Order
+                </label>
+
+                <select id="sortOrder">
+
+                    <option value="desc">
+                        High → Low / Newest
+                    </option>
+
+                    <option value="asc">
+                        Low → High / Oldest
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="search-actions">
+
+            <button
+                class="primary-btn"
+                id="applyFiltersBtn"
+                type="button"
+            >
+                Apply Filters
+            </button>
+
+            <button
+                class="clear-btn"
+                id="clearFiltersBtn"
+                type="button"
+            >
+                Reset
+            </button>
+
+        </div>
+
+
+        <div
+            class="search-status"
+            id="searchStatus"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MY LISTINGS
+===================================================== -->
+
+<section
+    class="section my-listings-section"
+    id="my-listings"
+>
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="eyebrow">
+                YOUR GARAGE
+            </span>
+
+            <h2>
+                My Listings
+            </h2>
+
+            <p>
+                Manage and view the cars you have posted.
+            </p>
+
+        </div>
+
+        <div class="my-listings-actions">
+
+            <span
+                class="listing-count"
+                id="listingCount"
+            >
+                0 Listings
+            </span>
+
+            <button
+                class="outline-btn"
+                id="refreshMyListingsBtn"
+                type="button"
+            >
+                Refresh
+            </button>
+
+            <button
+                class="primary-btn"
+                id="myListingsSellBtn"
+                type="button"
+            >
+                + Post a Car
+            </button>
+
+        </div>
+
+    </div>
+
+    <div
+        id="myListingsContainer"
+        class="cars-grid"
+    ></div>
+
+</section>
+
+
+<!-- =====================================================
+     AI ASSISTANT
+===================================================== -->
+
+<section
+    class="section ai-section"
+    id="ai"
+>
+
+    <div class="ai-wrapper">
+
+        <div class="ai-info">
+
+            <span class="eyebrow">
+                AI ASSISTANT
+            </span>
+
+            <h2>
+                Tell us what<br>
+                you're looking for.
+            </h2>
+
+            <p>
+                Ask about cars, budgets, brands,
+                cities or comparisons.
+            </p>
+
+            <div class="ai-example">
+                "Find me a manual Suzuki under 30 lakh in BWP."
+            </div>
+
+        </div>
+
+
+        <div class="chat-box">
+
+            <div
+                class="chat-messages"
+                id="chatMessages"
+            >
+
+                <div class="message assistant-message">
+
+                    <div class="message-icon">
+                        AI
+                    </div>
+
+                    <div>
+                        Hello! I can help you search,
+                        compare and find cars.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="chat-input-row">
+
+                <input
+                    type="text"
+                    id="agentInput"
+                    placeholder="Ask the AI assistant..."
+                >
+
+                <button
+                    class="primary-btn"
+                    id="agentSendBtn"
+                    type="button"
+                >
+                    Send
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section
+    class="section"
+    id="features"
+>
+
+    <div class="section-header centered">
+
+        <span class="eyebrow">
+            WHY AUTOMARKET
+        </span>
+
+        <h2>
+            Everything you need
+        </h2>
+
+        <p>
+            A modern marketplace built around
+            smarter car discovery.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+
+            <div class="feature-number">
+                01
+            </div>
+
+            <h3>
+                Smart Search
+            </h3>
+
+            <p>
+                Search cars using make, model,
+                price, city and other filters.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-number">
+                02
+            </div>
+
+            <h3>
+                AI Recommendations
+            </h3>
+
+            <p>
+                Describe your requirements and
+                let the AI find matching vehicles.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-number">
+                03
+            </div>
+
+            <h3>
+                Sell Your Car
+            </h3>
+
+            <p>
+                Create your own listing and
+                upload pictures for buyers.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+
+<section class="how-section">
+
+    <div class="how-container">
+
+        <div class="how-title">
+
+            <span class="eyebrow">
+                SIMPLE PROCESS
+            </span>
+
+            <h2>
+                Your next car<br>
+                in three steps.
+            </h2>
+
+        </div>
+
+
+        <div class="steps">
+
+            <div class="step">
+
+                <span>
+                    01
+                </span>
+
+                <h3>
+                    Search
+                </h3>
+
+                <p>
+                    Explore available cars
+                    using smart filters.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <span>
+                    02
+                </span>
+
+                <h3>
+                    Compare
+                </h3>
+
+                <p>
+                    Check important vehicle
+                    information before deciding.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <span>
+                    03
+                </span>
+
+                <h3>
+                    Connect
+                </h3>
+
+                <p>
+                    View the listing details
+                    and contact the seller.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+        <div>
+
+            <div class="footer-logo">
+                AutoMarket<span>AI</span>
+            </div>
+
+            <p>
+                A smarter way to buy and sell cars.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#browse">
+                Browse
+            </a>
+
+            <a href="#search">
+                Search
+            </a>
+
+            <a href="#my-listings">
+                My Listings
+            </a>
+
+            <a href="#ai">
+                AI Assistant
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+        © 2026 AutoMarket AI. All rights reserved.
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     AUTH MODAL
+===================================================== -->
+
+<div
+    class="modal hidden"
+    id="authModal"
+>
+
+    <div class="modal-card auth-card">
+
+        <button
+            class="modal-close"
+            onclick="closeModal('authModal')"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <div class="auth-header">
+
+            <span class="eyebrow">
+                ACCOUNT
+            </span>
+
+            <h2 id="authTitle">
+                Welcome back
+            </h2>
+
+            <p id="authSubtitle">
+                Login to continue.
+            </p>
+
+        </div>
+
+
+        <div
+            class="auth-tabs"
+            id="authTabs"
+        >
+
+            <button
+                class="auth-tab active"
+                id="loginTab"
+                type="button"
+            >
+                Login
+            </button>
+
+            <button
+                class="auth-tab"
+                id="registerTab"
+                type="button"
+            >
+                Create Account
+            </button>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <form
+            id="loginForm"
+            class="modal-form"
+        >
+
+            <div class="field">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    required
+                    placeholder="you@example.com"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    required
+                    placeholder="Your password"
+                >
+
+            </div>
+
+
+            <button
+                class="primary-btn full-btn"
+                type="submit"
+            >
+                Login
+            </button>
+
+        </form>
+
+
+        <!-- REGISTER -->
+
+        <form
+            id="registerForm"
+            class="modal-form hidden"
+        >
+
+            <div class="field">
+
+                <label>
+                    Name
+                </label>
+
+                <input
+                    type="text"
+                    id="registerName"
+                    required
+                    placeholder="Your name"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="registerEmail"
+                    required
+                    placeholder="you@example.com"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    required
+                    placeholder="Create a password"
+                >
+
+            </div>
+
+
+            <button
+                class="primary-btn full-btn"
+                type="submit"
+            >
+                Create Account
+            </button>
+
+        </form>
+
+
+        <div
+            class="form-message"
+            id="authMessage"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CAR DETAILS MODAL
+===================================================== -->
+
+<div
+    class="modal hidden"
+    id="detailsModal"
+>
+
+    <div class="modal-card details-card">
+
+        <button
+            class="modal-close"
+            onclick="closeModal('detailsModal')"
+            type="button"
+        >
+            ×
+        </button>
+
+        <div id="detailsContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SELL CAR MODAL
+===================================================== -->
+
+<div
+    class="modal hidden"
+    id="sellModal"
+>
+
+    <div class="modal-card sell-card">
+
+        <button
+            class="modal-close"
+            onclick="closeModal('sellModal')"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <div class="auth-header">
+
+            <span class="eyebrow">
+                SELL YOUR CAR
+            </span>
+
+            <h2>
+                Post a listing
+            </h2>
+
+            <p>
+                Add your vehicle details below.
+            </p>
+
+        </div>
+
+
+        <form
+            id="sellForm"
+            class="modal-form"
+        >
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label>
+                        Make
+                    </label>
+
+                    <input
+                        type="text"
+                        id="carMake"
+                        required
+                        placeholder="Suzuki"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Model
+                    </label>
+
+                    <input
+                        type="text"
+                        id="carModel"
+                        required
+                        placeholder="Alto"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label>
+                        Year
+                    </label>
+
+                    <input
+                        type="number"
+                        id="carYear"
+                        required
+                        placeholder="2023"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Price (PKR)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="carPrice"
+                        required
+                        placeholder="2500000"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label>
+                        Mileage (km)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="carMileage"
+                        required
+                        placeholder="40000"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Fuel Average
+                    </label>
+
+                    <input
+                        type="number"
+                        step="0.1"
+                        id="carFuelAverage"
+                        required
+                        placeholder="25"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label>
+                        Fuel Type
+                    </label>
+
+                    <select
+                        id="carFuelType"
+                        required
+                    >
+
+                        <option value="">
+                            Select fuel
+                        </option>
+
+                        <option value="Petrol">
+                            Petrol
+                        </option>
+
+                        <option value="Diesel">
+                            Diesel
+                        </option>
+
+                        <option value="Hybrid">
+                            Hybrid
+                        </option>
+
+                        <option value="Electric">
+                            Electric
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Transmission
+                    </label>
+
+                    <select
+                        id="carTransmission"
+                        required
+                    >
+
+                        <option value="">
+                            Select transmission
+                        </option>
+
+                        <option value="Manual">
+                            Manual
+                        </option>
+
+                        <option value="Automatic">
+                            Automatic
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label>
+                        City
+                    </label>
+
+                    <input
+                        type="text"
+                        id="carCity"
+                        required
+                        placeholder="BWP"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Contact Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="carContact"
+                        required
+                        placeholder="03XXXXXXXXX"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="carDescription"
+                    rows="4"
+                    placeholder="Describe your car..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Car Image
+                </label>
+
+                <input
+                    type="file"
+                    id="carImage"
+                    accept="image/*"
+                >
+
+                <div
+                    id="imagePreview"
+                    class="image-preview"
+                ></div>
+
+            </div>
+
+
+            <button
+                class="primary-btn full-btn"
+                type="submit"
+            >
+                Publish Car
+            </button>
+
+
+            <div
+                class="form-message"
+                id="sellMessage"
+            ></div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     EDIT CAR MODAL
+===================================================== -->
+
+<div
+    class="modal hidden"
+    id="editCarModal"
+>
+
+    <div class="modal-card sell-card">
+
+        <button
+            class="modal-close"
+            id="closeEditCarModal"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <div class="auth-header">
+
+            <span class="eyebrow">
+                YOUR GARAGE
+            </span>
+
+            <h2>
+                Edit Car
+            </h2>
+
+            <p>
+                Update your listing and manage its pictures.
+            </p>
+
+        </div>
+
+
+        <form
+            id="editCarForm"
+            class="modal-form"
+        >
+
+            <input
+                type="hidden"
+                id="editCarId"
+            >
+
+
+            <!-- MAKE + MODEL -->
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label>
+                        Make
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editMake"
+                        required
+                        placeholder="Suzuki"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Model
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editModel"
+                        required
+                        placeholder="Alto"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- YEAR + PRICE -->
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label>
+                        Year
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editYear"
+                        required
+                        placeholder="2023"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Price (PKR)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editPrice"
+                        required
+                        placeholder="2500000"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- MILEAGE + FUEL AVERAGE -->
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label>
+                        Mileage (km)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editMileage"
+                        required
+                        placeholder="40000"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Fuel Average
+                    </label>
+
+                    <input
+                        type="number"
+                        step="0.1"
+                        id="editFuelAverage"
+                        required
+                        placeholder="25"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- FUEL + TRANSMISSION -->
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label>
+                        Fuel Type
+                    </label>
+
+                    <select
+                        id="editFuelType"
+                        required
+                    >
+
+                        <option value="">
+                            Select fuel
+                        </option>
+
+                        <option value="Petrol">
+                            Petrol
+                        </option>
+
+                        <option value="Diesel">
+                            Diesel
+                        </option>
+
+                        <option value="Hybrid">
+                            Hybrid
+                        </option>
+
+                        <option value="Electric">
+                            Electric
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Transmission
+                    </label>
+
+                    <select
+                        id="editTransmission"
+                        required
+                    >
+
+                        <option value="">
+                            Select transmission
+                        </option>
+
+                        <option value="Manual">
+                            Manual
+                        </option>
+
+                        <option value="Automatic">
+                            Automatic
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- CITY + CONTACT -->
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label>
+                        City
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editCity"
+                        required
+                        placeholder="BWP"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Contact Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editContactNumber"
+                        required
+                        placeholder="03XXXXXXXXX"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="field">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="editDescription"
+                    rows="4"
+                    placeholder="Describe your car..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- =================================================
+                 IMAGE MANAGEMENT
+            ================================================= -->
+
+            <div class="edit-images-section">
+
+                <div class="edit-images-header">
+
+                    <div>
+
+                        <label>
+                            Car Pictures
+                        </label>
+
+                        <p>
+                            Replace, delete or add pictures.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="editImagesContainer"
+                    class="edit-images-grid"
+                >
+
+                    <div class="image-management-empty">
+                        Loading pictures...
+                    </div>
+
+                </div>
+
+
+                <div class="field edit-new-image-field">
+
+                    <label>
+                        Add New Picture
+                    </label>
+
+                    <div class="image-upload-row">
+
+                        <input
+                            type="file"
+                            id="editNewImage"
+                            accept="image/*"
+                        >
+
+                        <button
+                            type="button"
+                            class="secondary-btn"
+                            id="uploadNewEditImageBtn"
+                        >
+                            Upload
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="editImageMessage"
+                        class="form-message"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SAVE CAR DETAILS -->
+
+            <button
+                class="primary-btn full-btn"
+                type="submit"
+            >
+                Save Changes
+            </button>
+
+
+            <div
+                class="form-message"
+                id="editCarMessage"
+            ></div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
