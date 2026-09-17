@@ -414,7 +414,7 @@ Use `.env.example` to show required variables without exposing sensitive informa
 ### Search Cars
 
 ```text
-Find a manual Suzuki in BWP under 30 lakh.
+Find a manual Mini Copper in BWP under 30 lakh.
 ```
 
 ### Get Recommendations
@@ -426,7 +426,7 @@ Recommend a petrol car in Dubai under 50 lakh.
 ### Compare Cars
 
 ```text
-Compare Suzuki Alto and Honda BR-V.
+Compare AUDI A5 and BMW M4 CS.
 ```
 
 The assistant resolves human-friendly car names and features before retrieving the relevant car records.
@@ -434,7 +434,7 @@ The assistant resolves human-friendly car names and features before retrieving t
 ### Get Car Details
 
 ```text
-Show the details of Suzuki Alto 2023.
+Show the details of BMW M5 2023.
 ```
 
 ---
@@ -523,7 +523,7 @@ See the [LICENSE](LICENSE) file for the complete license text.
 
 ## 👤 Author
 
-**Your Name**
+**Rao Umar Farooq**
 
 GitHub: `https://github.com/UmarRao1`
 
